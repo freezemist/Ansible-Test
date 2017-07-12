@@ -1,10 +1,9 @@
 ---
-
 - name: Download HTML file
   hosts: all
   gather_facts: false
-  - name: Download HTML file to a specified directory
     tasks:
+  - name: Download HTML file to a specified directory
       win_get_url:
       url: 'https://raw.githubusercontent.com/freezemist/Ansible-Test/master/IIS/index.html'
       dest: 'C:\inetpub\wwwroot\TestSite'
