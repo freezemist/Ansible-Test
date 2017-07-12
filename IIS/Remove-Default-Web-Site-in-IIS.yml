@@ -1,5 +1,5 @@
 ---
-	- name: Remove Default Web Site in IIS
-	  win_iis_website:
-		name: "Default Web Site"
-		state: absent
+- name: Remove Default Web Site in IIS
+  win_iis_website:
+  name: "Default Web Site"
+  state: absent
