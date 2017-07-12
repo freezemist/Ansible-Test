@@ -24,6 +24,6 @@
         name: "TestSite"
         state: started
         port: 80
-    application_pool: "TestSite"
-    physical_path: c:\inetpub\wwwroot\TestSite\
-  register: website
+        application_pool: "TestSite"
+        physical_path: c:\inetpub\wwwroot\TestSite\
+      register: website
