@@ -1,0 +1,19 @@
+---
+# This playbook installs IIS and management tools, downloads and unzips, configures a website in IIS, then breaks the site by stopping a primary IIS Service
+
+- name: Setup Test Site Break-Fix
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Install IIS
+      win_feature:
+        name: "Web-Server"
+        state: present
+        restart: yes
+        include_sub_features: yes
+        include_management_tools: yes
+	- name: Download HTML file
+	  win_get_url:
+		url: https://raw.githubusercontent.com/PixelsCommander/Download-File-JS/master/example/index.html
+		dest: C:\inetpub\wwwroot\TestSite
+		force: yes
