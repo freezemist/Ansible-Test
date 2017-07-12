@@ -1,8 +1,9 @@
 ---
+
 - name: Download HTML file
   hosts: all
   gather_facts: false
-    Tasks:
+  tasks:
     - name: Download HTML file
       win_get_url:
       url: https://raw.githubusercontent.com/freezemist/Ansible-Test/master/IIS/index.html
