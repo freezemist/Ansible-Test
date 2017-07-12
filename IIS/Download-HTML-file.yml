@@ -9,3 +9,4 @@
       win_get_url:
         url: 'https://raw.githubusercontent.com/freezemist/Ansible-Test/master/IIS/index.html'
         dest: 'C:\inetpub\wwwroot\TestSite\index.html'
+		force:  yes
