@@ -5,6 +5,13 @@
   hosts: all
   gather_facts: false
   tasks:
+    - name: create website content directory
+      win_file: path='c:\inetpub\wwwroot\TestSite' state=directory
+    - name: Download simple web site to 'C:\inetpub\wwwroot\TestSite'
+      win_get_url:
+        url: 'https://raw.githubusercontent.com/freezemist/Ansible-Test/master/IIS/index.html'
+        dest: 'C:\inetpub\wwwroot\TestSite\index.html'
+        force:  yes
     - name: Install IIS
       win_feature:
         name: "Web-Server"
@@ -12,8 +19,11 @@
         restart: yes
         include_sub_features: yes
         include_management_tools: yes
-	- name: Download HTML file
-	  win_get_url:
-		url: https://raw.githubusercontent.com/PixelsCommander/Download-File-JS/master/example/index.html
-		dest: C:\inetpub\wwwroot\TestSite
-		force: yes
+    - name: IIS TestSite
+      win_iis_website:
+        name: "TestSite"
+        state: started
+        port: 80
+    application_pool: "TestSite"
+    physical_path: c:\inetpub\wwwroot\TestSite\
+  register: website
