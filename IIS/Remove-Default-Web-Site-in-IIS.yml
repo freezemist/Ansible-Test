@@ -1,5 +1,10 @@
 ---
 - name: Remove Default Web Site in IIS
-  win_iis_website:
-  name: "Default Web Site"
-  state: absent
+  hosts: all 
+
+  gather_facts: false
+  tasks:
+    - name: Remove Default Web Site in IIS
+      win_iis_website:
+      name: "Default Web Site"
+      state: absent
