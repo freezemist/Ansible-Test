@@ -26,8 +26,7 @@
       win_iis_website:
         name: "TestSite"
         state: started
-        ip:  23.253.159.155
         port: 80
-        application_pool: "TestSite"
+        application_pool: "TestSite1"
         physical_path: c:\inetpub\wwwroot\TestSite\
       register: website
