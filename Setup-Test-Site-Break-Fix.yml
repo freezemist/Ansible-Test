@@ -9,6 +9,10 @@
       win_iis_website:
         name: "Default Web Site"
         state: absent
+    - name: Remove DefaultAppPool in IIS
+      win_iis_webapppool:
+        name: DefaultAppPool
+        state: absent
     - name: create website content directory
       win_file: path='c:\inetpub\wwwroot\TestSite' state=directory
     - name: Download simple web site to 'C:\inetpub\wwwroot\TestSite'
