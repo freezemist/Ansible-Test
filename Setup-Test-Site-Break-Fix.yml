@@ -34,7 +34,7 @@
       win_iis_webapppool:
         name: TestSite
         state: started
-    - name: Restart TestSite
+    - name: Start "TestSite"
       win_iis_website:
         name: "TestSite"
-        state: restarted
+        state: started
