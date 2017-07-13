@@ -35,3 +35,4 @@
         name: TestSite
         site: TestSite
         state: present
+        physical_path: c:\inetpub\wwwroot\TestSite\
