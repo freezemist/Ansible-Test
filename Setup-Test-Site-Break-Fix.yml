@@ -30,9 +30,11 @@
         application_pool: "TestSite"
         physical_path: c:\inetpub\wwwroot\TestSite\
       register: website
-    - name: Add TestSite webapplication on IIS.
-      win_iis_webapplication:
+    - name: Create a new application pool "TestSite" in 'Started' state
+      win_iis_webapppool:
         name: TestSite
-        site: TestSite
-        state: present
-        physical_path: c:\inetpub\wwwroot\TestSite\
+        state: started
+    - name: Restart TestSite
+      win_iis_website:
+        name: "TestSite"
+        state: restarted
