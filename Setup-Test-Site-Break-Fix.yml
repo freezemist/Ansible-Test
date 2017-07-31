@@ -42,6 +42,6 @@
       win_iis_website:
         name: "TestSite"
         state: started
-    - win_command: appcmd set config /section:defaultDocument /-files.[value='index.html']
+    - win_shell: appcmd set config /section:defaultDocument /-files.[value='index.html']
       args:
         chdir: C:\Windows\System32\inetsrv\
