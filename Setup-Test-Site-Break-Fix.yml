@@ -44,4 +44,4 @@
         state: started
     - win_command: appcmd set config /section:defaultDocument /-files.[value='index.html']
       args:
-        chdir: C:\Windows\System32\inetsrv
+        chdir: C:\Windows\System32\inetsrv\
