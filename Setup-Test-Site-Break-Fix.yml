@@ -42,6 +42,7 @@
       win_iis_website:
         name: "TestSite"
         state: started
-    - win_shell: appcmd set config /section:defaultDocument /-files.[value='index.html']
-      args:
-        chdir: C:\Windows\System32\inetsrv\
+    - name: Remove "Index.html" from default Documents in IIS
+      win_shell: appcmd set config /section:defaultDocument /-files.[value='index.html']
+        args:
+          chdir: C:\Windows\System32\inetsrv\
