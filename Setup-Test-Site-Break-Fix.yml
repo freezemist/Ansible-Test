@@ -1,6 +1,9 @@
 ---
 # This playbook installs IIS and management tools, downloads and unzips, configures a website in IIS, then breaks the site by stopping a primary IIS Service
 
+ - set_fact:
+    r: "{{ 100 | random }}"
+    run_once: yes
 - name: Setup Test Site Break-Fix
   hosts: all
   gather_facts: false
@@ -43,8 +46,6 @@
         name: "TestSite"
         state: started
     - name: Remove "Index.html" from default Documents in IIS
-      win_shell: appcmd set config arg1 arg2
+      win_shell: .\appcmd set config /section:defaultDocument /-files.[value='index.html']
       args:
         chdir: C:\Windows\System32\inetsrv\
-        arg1: /section:defaultDocument
-        arg2: /-files.[value='index.html']
