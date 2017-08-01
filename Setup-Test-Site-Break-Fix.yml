@@ -1,9 +1,6 @@
 ---
 # This playbook installs IIS and management tools, downloads and unzips, configures a website in IIS, then breaks the site by stopping a primary IIS Service
 
- - set_fact:
-    r: "{{ 100 | random }}"
-    run_once: yes
 - name: Setup Test Site Break-Fix
   hosts: all
   gather_facts: false
