@@ -1,5 +1,5 @@
 ---
-# This playbook installs IIS and management tools, downloads and unzips, configures a website in IIS, then breaks the site by stopping a primary IIS Service
+# This playbook installs IIS and management tools, downloads and unzips, configures a website in IIS, then breaks the site by removing the default document
 
 - name: IIS Setup
   hosts: all
