@@ -1,5 +1,5 @@
 ---
-# This playbook removes IIS and deletss all configurations made by the "IIS Setup" Script
+# This playbook removes IIS and deletss all configurations made by the "IIS Setup" Playbook
 
 - name: IIS Tear-Down
   hosts: all
