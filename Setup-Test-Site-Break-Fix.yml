@@ -1,32 +1,32 @@
 ---
 # This playbook installs IIS and management tools, downloads and unzips, configures a website in IIS, then breaks the site by stopping a primary IIS Service
 
-- name: Setup Test Site Break-Fix
+- name: IIS Setup
   hosts: all
   gather_facts: false
   tasks:
-    - name: Remove Default Web Site in IIS
+    - name: Remove Default Web Site from IIS
       win_iis_website:
         name: "Default Web Site"
         state: absent
-    - name: Remove DefaultAppPool in IIS
+    - name: Remove DefaultAppPool from IIS
       win_iis_webapppool:
         name: DefaultAppPool
         state: absent
     - name: create website content directory
       win_file: path='c:\inetpub\wwwroot\TestSite' state=directory
-    - name: Download simple web site to 'C:\inetpub\wwwroot\TestSite'
+    - name: Download simple html web site to 'C:\inetpub\wwwroot\TestSite'
       win_get_url:
         url: 'https://raw.githubusercontent.com/freezemist/Ansible-Test/master/IIS/index.html'
         dest: 'C:\inetpub\wwwroot\TestSite\index.html'
-    - name: Install IIS
+    - name: Install IIS with all subfeatures
       win_feature:
         name: "Web-Server"
         state: present
         restart: no
         include_sub_features: yes
         include_management_tools: yes
-    - name: IIS TestSite
+    - name: Create website in IIS called "TestSite"
       win_iis_website:
         name: "TestSite"
         state: started
@@ -34,15 +34,16 @@
         application_pool: "TestSite"
         physical_path: c:\inetpub\wwwroot\TestSite\
       register: website
-    - name: Create a new application pool "TestSite" in 'Started' state
+    - name: Create a new application pool named "TestSite" in 'Started' state
       win_iis_webapppool:
         name: TestSite
         state: started
-    - name: Start "TestSite"
+    - name: Start "TestSite" website in IIS
       win_iis_website:
         name: "TestSite"
         state: started
     - name: Remove "Index.html" from default Documents in IIS
-      win_command: .\appcmd set config /section:defaultDocument /-files.[value='index.html']
+      win_command: appcmd set config /section:defaultDocument /-files.[value='index.html']
       args:
         chdir: C:\Windows\System32\inetsrv\
+        executable: cmd
