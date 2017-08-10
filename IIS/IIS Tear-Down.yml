@@ -1,0 +1,24 @@
+---
+# This playbook removes IIS and deletss all configurations made by the "IIS Setup" Script
+
+- name: IIS Setup
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Remove "TestSite" from IIS
+      win_iis_website:
+        name: "TestSite"
+        state: absent
+    - name: Remove TestSite application pool from IIS
+      win_iis_webapppool:
+        name: TestSite
+        state: absent
+    - name: Remove "TestSite" directory
+      win_file:
+        path: c:\inetpub\wwwroot\TestSite
+        state: absent
+	- name: Remove IIS
+      win_feature:
+        name: "Web-Server"
+        state: absent
+        restart: yes
