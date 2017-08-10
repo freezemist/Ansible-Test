@@ -5,14 +5,6 @@
   hosts: all
   gather_facts: false
   tasks:
-    - name: Remove Default Web Site from IIS
-      win_iis_website:
-        name: "Default Web Site"
-        state: absent
-    - name: Remove DefaultAppPool from IIS
-      win_iis_webapppool:
-        name: DefaultAppPool
-        state: absent
     - name: create website content directory
       win_file: path='c:\inetpub\wwwroot\TestSite' state=directory
     - name: Download simple html web site to 'C:\inetpub\wwwroot\TestSite'
@@ -26,6 +18,14 @@
         restart: no
         include_sub_features: yes
         include_management_tools: yes
+    - name: Remove Default Web Site from IIS
+      win_iis_website:
+        name: "Default Web Site"
+        state: absent
+    - name: Remove DefaultAppPool from IIS
+      win_iis_webapppool:
+        name: DefaultAppPool
+        state: absent
     - name: Create website in IIS called "TestSite"
       win_iis_website:
         name: "TestSite"
