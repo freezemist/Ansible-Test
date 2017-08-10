@@ -2,6 +2,7 @@
 # This playbook removes IIS and deletss all configurations made by the "IIS Setup" Script
 
 - name: IIS Tear-Down
+  hosts: all
   gather_facts: false
   tasks:
     - name: Remove "TestSite" from IIS
