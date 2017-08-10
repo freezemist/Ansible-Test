@@ -45,5 +45,5 @@
     - name: Remove "Index.html" from default Documents in IIS
       win_command: appcmd set config /section:defaultDocument /-files.[value='index.html']
       args:
-        chdir: C:\Windows\System32\inetsrv\
         executable: cmd
+        chdir: C:\Windows\System32\inetsrv\
